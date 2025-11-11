@@ -12,10 +12,23 @@ export default function App() {
   ]
 
   const [films, setFilms] = useState(listFilms)
+  const [search, setSearch] = useState('')
+
+  useEffect(() => {
+    const filtered = films.filter(film => film.title.toLowerCase().includes(search.toLowerCase()))
+    setFilms(filtered)
+
+    if (search === '') {
+      setFilms(listFilms) // perchè voglio che ritorni intero
+    }
+
+  }, [films, search])
+
 
   return (
     <div className="container">
-      <input type="search" />
+
+      <input type="search" title={search} onChange={(e) => setSearch(e.target.value)} />
 
       <ul>
         {films.map(film => (
