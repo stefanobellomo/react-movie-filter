@@ -15,11 +15,11 @@ export default function App() {
   const [search, setSearch] = useState('')
   const [newFilms, setNewFilms] = useState('')
   const [newGenre, setNewGenre] = useState('')
-  const [stateFilms, setStateFilms] = useState(films)
   const [genre, setGenre] = useState('')
+  const [stateFilms, setStateFilms] = useState(films)
 
   useEffect(() => {
-    const filtered = listFilms.filter(film => film.title.toLowerCase().includes(search.toLowerCase()))
+    const filtered = films.filter(film => film.title.toLowerCase().includes(search.toLowerCase()))
     setStateFilms(filtered)
 
     if (search === '') {
@@ -65,7 +65,6 @@ export default function App() {
     }
   }
 
-
   return (
     <div className="container">
 
@@ -76,7 +75,6 @@ export default function App() {
         <input type="text" value={newGenre} placeholder="add genre film" onChange={(e) => setNewGenre(e.target.value)} />
         <button className="badge bg-success my-4 mx-4" type="submit">Add</button>
       </form>
-
 
       <input type="search" value={search} onChange={(e) => setSearch(e.target.value)} />
 
@@ -90,7 +88,6 @@ export default function App() {
 
         </select>
       </div>
-
 
       <ul>
         {stateFilms.map(film => (
